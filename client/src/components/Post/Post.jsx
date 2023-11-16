@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Post.css";
 import Comment from "../../img/comment.png";
+import User from "../../img/user.jpg";
 import Share from "../../img/share.png";
 import Heart from "../../img/like.png";
 import Delete from "../../img/delete.png";
@@ -18,7 +19,11 @@ const Post = ({ data }) => {
 
   console.log("user._id:", user._id);
   console.log("data.author:", data.author);
+  console.log("data.author:", user.username);
   console.log("isUserAuthor:", isUserAuthor);
+
+
+
   
   const handleLike = () => {
     likePost(data._id, user._id);
@@ -42,8 +47,19 @@ const Post = ({ data }) => {
       });
   };
 
+  
   return (
     <div className="Post">
+
+      <div >
+        <span style={{fontFamily:"cursive" }}>
+        <img  src={User} alt="" />
+        &nbsp;&nbsp;
+        <span style={{position:"relative",bottom:"4px"}}>
+        {isUserAuthor ? user.username : user.username === "hmodi" ? "ppadia" : "hmodi"}
+        </span>
+        </span>
+      </div>
       <img
         src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""}
         alt=""

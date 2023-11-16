@@ -15,6 +15,7 @@ const User = ({ person }) => {
       : dispatch(followUser(person._id, user));
     setFollowing((prev) => !prev);
   };
+  const randomImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1VyCFr3rHLultu7DYy5oRiJlAO-eTOSdXLRhBIfhlGQ&s";
   return (
     <div className="follower">
       <div>
@@ -22,9 +23,9 @@ const User = ({ person }) => {
           src={
             publicFolder + person.profilePicture
               ? publicFolder + person.profilePicture
-              : publicFolder + "defaultProfile.png"
+              :  randomImageUrl
           }
-          alt="profile"
+         
           className="followerImage"
         />
         <div className="name">

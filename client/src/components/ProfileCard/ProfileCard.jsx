@@ -23,8 +23,8 @@ const ProfileCard = ({location}) => {
               ? serverPublic + user.profilePicture
               : serverPublic + "defaultProfile.png"
           }
-          alt="ProfileImage"
-        />
+          alt="ProfileImage" />
+       
       </div>
       <div className="ProfileName">
         <span>{user.firstname} {user.lastname}</span>
