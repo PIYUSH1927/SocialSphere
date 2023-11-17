@@ -56,7 +56,7 @@ const Post = ({ data }) => {
         <img  src={User} alt="" />
         &nbsp;&nbsp;
         <span style={{position:"relative",bottom:"4px"}}>
-        {isUserAuthor ? user.username : user.username === "hmodi" ? "ppadia" : "hmodi"}
+        {isUserAuthor ? user.username : user.username === "ppadia" ? "hmodi" : "ppadia"}
         </span>
         </span>
       </div>
