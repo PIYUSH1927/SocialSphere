@@ -16,40 +16,9 @@ const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage }) => {
   }
 
   // fetching data for header
-  useEffect(() => {
-    const userId = chat?.members?.find((id) => id !== currentUser);
-    const getUserData = async () => {
-      try {
-        const { data } = await getUser(userId);
-        setUserData(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    if (chat !== null) getUserData();
-  }, [chat, currentUser]);
-
-  // fetch messages
-  useEffect(() => {
-    const fetchMessages = async () => {
-      try {
-        const { data } = await getMessages(chat._id);
-        setMessages(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    if (chat !== null) fetchMessages();
-  }, [chat]);
 
 
   // Always scroll to last Message
-  useEffect(()=> {
-    scroll.current?.scrollIntoView({ behavior: "smooth" });
-  },[messages])
-
 
 
   // Send Message
@@ -76,13 +45,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage }) => {
 }
 
 // Receive Message from parent component
-useEffect(()=> {
-  console.log("Message Arrived: ", receivedMessage)
-  if (receivedMessage !== null && receivedMessage.chatId === chat._id) {
-    setMessages([...messages, receivedMessage]);
-  }
 
-},[receivedMessage])
 
 
 
