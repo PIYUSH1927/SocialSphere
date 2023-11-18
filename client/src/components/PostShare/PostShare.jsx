@@ -32,6 +32,7 @@ const PostShare = () => {
 
     //post data
     const newPost = {
+      name:user.username,
       userId: user._id,
       desc: desc.current.value,
     };

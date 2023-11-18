@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 const postSchema = mongoose.Schema(
   {
     userId: { type: String, required: true },
-    desc: {type: String, required : true},
+    desc: {type: String},
+    username: {type: String},
     likes: [],
     createdAt: {
       type: Date,
