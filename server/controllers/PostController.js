@@ -47,16 +47,12 @@ export const updatePost = async (req, res) => {
 // delete a post
 export const deletePost = async (req, res) => {
   const id = req.params.id;
-  const { userId } = req.body;
 
   try {
-    const post = await PostModel.findById(id);
-    if (post.userId === userId) {
-      await post.deleteOne();
-      res.status(200).json("Post deleted.");
-    } else {
-      res.status(403).json("Action forbidden");
-    }
+    // Delete the post without checking the user ID
+    await PostModel.findByIdAndDelete(id);
+    
+    res.status(200).json("Post deleted.");
   } catch (error) {
     res.status(500).json(error);
   }

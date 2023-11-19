@@ -7,7 +7,7 @@ import Share from "../../img/share.png";
 import Heart from "../../img/like.png";
 import Delete from "../../img/delete.png";
 import NotLike from "../../img/notlike.png";
-import { likePost } from "../../api/PostsRequests";
+import { likePost ,deletePost} from "../../api/PostsRequests";
 import { useSelector } from "react-redux";
 
 const Post = ({ data }) => {
@@ -22,6 +22,9 @@ const Post = ({ data }) => {
   console.log("data.author:", user.username);
   console.log("isUserAuthor:", isUserAuthor);
 
+  console.log('Post User ID:', data.userId);
+console.log('Request User ID:', user._id);
+  
 
 
   
@@ -31,20 +34,18 @@ const Post = ({ data }) => {
     liked? setLikes((prev)=>prev-1): setLikes((prev)=>prev+1)
   };
 
-  const handleDelete = () => {
-    const apiUrl = ``;
-
-    axios
-      .delete(apiUrl)
-      .then((response) => {
-        if (response.status === 200) {
-          console.log("Post deleted successfully.");
-          window.alert("Post deleted successfully.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error deleting post:", error);
-      });
+  const handleDelete = async (postId) => {
+    try {
+      await deletePost(postId, { userId: user._id });
+      console.log("Post deleted successfully.");
+      window.alert("Post deleted successfully.");
+      window.location.reload();
+      // Add any additional logic or state updates after a successful deletion
+    } catch (error) {
+      console.error("Error deleting post:", error);
+      // Handle errors appropriately
+      // For example, you might want to show an error message to the user
+    }
   };
 
   
@@ -76,7 +77,7 @@ const Post = ({ data }) => {
         <img src={Share} alt="" />
 
         {isUserAuthor && (
-        <img style={{marginLeft: "auto", width:"3%" , cursor:"pointer"}} src={Delete} onClick={handleDelete} alt="" />
+        <img style={{marginLeft: "auto", width:"3%" , cursor:"pointer"}} src={Delete} onClick={() => handleDelete(data._id)} alt="" />
         )}
       </div>
 
