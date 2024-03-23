@@ -148,7 +148,6 @@ const Auth = () => {
             style={{background:'#0096FF'}}
               className="button  infoButton"
               type="Submit"
-              disabled={loading}
             >
               {loading ? "Loading..." : isSignUp ? "SignUp" : "Login"}
             </button>
