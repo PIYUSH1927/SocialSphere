@@ -2,7 +2,7 @@ import React from "react";
 
 import Home from "../../img/home1.png";
 import Noti from "../../img/noti.png";
-import Comment from "../../img/comment.png";
+import Chat from "../../img/chat1.png";
 import { UilSetting } from "@iconscout/react-unicons";
 import { Link } from "react-router-dom";
 
@@ -15,7 +15,7 @@ const NavIcons = () => {
       <UilSetting />
       <img src={Noti} alt="" />
       <Link to="../chat">
-        <img src={Comment} alt="" />
+        <img src={Chat} alt="" />
       </Link>
     </div>
   );
