@@ -20,11 +20,7 @@ const User = ({ person }) => {
     <div className="follower">
       <div>
         <img
-          src={
-            publicFolder + person.profilePicture
-              ? publicFolder + person.profilePicture
-              :  randomImageUrl
-          }
+          src={person.profilePicture ? (publicFolder + person.profilePicture) : randomImageUrl}
          
           className="followerImage"
         />

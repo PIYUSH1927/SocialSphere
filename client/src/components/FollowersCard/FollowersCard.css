@@ -5,8 +5,8 @@
     gap: 1rem;
     display: flex;
     flex-direction: column;
-    font-size: 13px;
-    max-height: 10rem;
+    font-size: 12px;
+    max-height: 1rem;
 }
 .follower{
     display: flex;
