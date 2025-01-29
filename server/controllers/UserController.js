@@ -1,4 +1,6 @@
+import mongoose from "mongoose";
 import UserModel from "../models/userModel.js";
+import ChatModel from "../models/chatModel.js";
 
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken'
@@ -92,27 +94,62 @@ export const deleteUser = async (req, res) => {
 // Follow a User
 // changed
 export const followUser = async (req, res) => {
-  const id = req.params.id;
-  const { _id } = req.body;
-  console.log(id, _id)
-  if (_id == id) {
-    res.status(403).json("Action Forbidden");
-  } else {
-    try {
-      const followUser = await UserModel.findById(id);
-      const followingUser = await UserModel.findById(_id);
+  const id = req.params.id; // The user being followed
+  const { _id } = req.body; // The logged-in user
 
-      if (!followUser.followers.includes(_id)) {
-        await followUser.updateOne({ $push: { followers: _id } });
-        await followingUser.updateOne({ $push: { following: id } });
-        res.status(200).json("User followed!");
-      } else {
-        res.status(403).json("you are already following this id");
-      }
-    } catch (error) {
-      console.log(error)
-      res.status(500).json(error);
+  if (_id === id) {
+    return res.status(403).json("Action Forbidden");
+  }
+
+  try {
+    console.log("Follow API called", { follower: _id, following: id });
+
+    const followUser = await UserModel.findById(id);
+    const followingUser = await UserModel.findById(_id);
+
+    if (!followUser || !followingUser) {
+      console.log("User not found in DB");
+      return res.status(404).json("User not found");
     }
+
+    if (!followUser.followers.includes(_id)) {
+      await followUser.updateOne({ $push: { followers: _id } });
+      await followingUser.updateOne({ $push: { following: id } });
+
+      console.log("User followed successfully!", { follower: _id, following: id });
+
+      // Convert IDs to ObjectId before storing in ChatModel
+      const user1 = new mongoose.Types.ObjectId(_id);
+      const user2 = new mongoose.Types.ObjectId(id);
+
+      // **Check if chat already exists**
+      const existingChat = await ChatModel.findOne({ members: { $all: [user1, user2] } });
+
+      if (!existingChat) {
+        console.log("No existing chat found, creating a new chat...");
+
+        const newChat = new ChatModel({
+          members: [user1, user2], // Store as ObjectId
+        });
+
+        const savedChat = await newChat.save();
+        console.log("New Chat Created:", savedChat);
+
+        if (!savedChat) {
+          return res.status(500).json("Failed to create chat.");
+        }
+      } else {
+        console.log("Chat already exists!");
+      }
+
+      return res.status(200).json("User followed and chat created if not existing!");
+    } else {
+      console.log("Already following this user!");
+      return res.status(403).json("You are already following this user.");
+    }
+  } catch (error) {
+    console.log("Error in followUser function:", error);
+    return res.status(500).json(error);
   }
 };
 

@@ -1,10 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import ChatBox from "../../components/ChatBox/ChatBox";
 import Conversation from "../../components/Coversation/Conversation";
 import LogoSearch from "../../components/LogoSearch/LogoSearch";
 import NavIcons from "../../components/NavIcons/NavIcons";
 import "./Chat.css";
-import { useEffect } from "react";
 import { userChats } from "../../api/ChatRequests";
 import { useDispatch, useSelector } from "react-redux";
 import { io } from "socket.io-client";
@@ -19,17 +18,25 @@ const Chat = () => {
   const [currentChat, setCurrentChat] = useState(null);
   const [sendMessage, setSendMessage] = useState(null);
   const [receivedMessage, setReceivedMessage] = useState(null);
-  // Get the chat in chat section
+
+  // **Fix: Cleanup function to prevent state update on unmounted component**
   useEffect(() => {
+    let isMounted = true;
+
     const getChats = async () => {
       try {
         const { data } = await userChats(user._id);
-        setChats(data);
+        if (isMounted) setChats(data); // ✅ Only update state if component is mounted
       } catch (error) {
         console.log(error);
       }
     };
+
     getChats();
+
+    return () => {
+      isMounted = false; // Cleanup on component unmount
+    };
   }, [user._id]);
 
   // Connect to Socket.io
@@ -39,25 +46,32 @@ const Chat = () => {
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);
     });
+
+    return () => {
+      socket.current.disconnect(); // ✅ Cleanup socket connection
+    };
   }, [user]);
 
   // Send Message to socket server
   useEffect(() => {
-    if (sendMessage!==null) {
-      socket.current.emit("send-message", sendMessage);}
+    if (sendMessage !== null) {
+      socket.current.emit("send-message", sendMessage);
+    }
   }, [sendMessage]);
-
 
   // Get the message from socket server
   useEffect(() => {
-    socket.current.on("recieve-message", (data) => {
-      console.log(data)
+    const handleReceiveMessage = (data) => {
+      console.log(data);
       setReceivedMessage(data);
-    }
+    };
 
-    );
+    socket.current.on("recieve-message", handleReceiveMessage);
+
+    return () => {
+      socket.current.off("recieve-message", handleReceiveMessage); // ✅ Cleanup socket listener
+    };
   }, []);
-
 
   const checkOnlineStatus = (chat) => {
     const chatMember = chat.members.find((member) => member !== user._id);
@@ -74,7 +88,8 @@ const Chat = () => {
           <h2>Chats</h2>
           <div className="Chat-list">
             {chats.map((chat) => (
-              <div key={chat._id}
+              <div
+                key={chat._id}
                 onClick={() => {
                   setCurrentChat(chat);
                 }}
@@ -91,7 +106,6 @@ const Chat = () => {
       </div>
 
       {/* Right Side */}
-
       <div className="Right-side-chat">
         <div style={{ width: "20rem", alignSelf: "flex-end" }}>
           <NavIcons />
