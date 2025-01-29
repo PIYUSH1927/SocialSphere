@@ -8,6 +8,10 @@ const PostSide = () => {
     <div className="PostSide">
       <PostShare/>
       <Posts/>
+      <div className="mobile-only">
+        <br />
+        <br />
+      </div>
     </div>
   );
 };

@@ -6,3 +6,14 @@
     height: 95.5vh;
     overflow: auto;
 }
+
+.mobile-only {
+    display: none;
+  }
+  
+  /* Show only in Mobile */
+  @media screen and (max-width: 768px) {
+    .mobile-only {
+      display: block;
+    }
+  }

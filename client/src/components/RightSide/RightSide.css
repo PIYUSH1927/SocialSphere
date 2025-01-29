@@ -30,3 +30,15 @@
     width: 80%;
     align-self: center;
 }
+
+/* Hide TrendCard & Share Button in Mobile */
+@media screen and (max-width: 768px) {
+    .hide-in-mobile {
+      display: none;
+    }
+    .RightSide{
+        gap: 0rem;
+        margin: 0px;
+        padding: 0px;
+    }
+  }
