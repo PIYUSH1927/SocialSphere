@@ -3,5 +3,14 @@
   display: grid;
   grid-template-columns: 18rem auto 20rem;
   gap: 1rem;
-  
+  width: 100%;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .Home {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
