@@ -5,6 +5,7 @@
   height: 100vh;
   gap: 4rem;
   position: relative;
+  
 }
 
 .Auth > div {
@@ -13,6 +14,10 @@
   justify-content: center;
 }
 
+body, html {
+  height: 100%;
+  overflow: hidden;
+}
 
 
 /* left side */
@@ -64,3 +69,20 @@
     align-items: center;
     justify-content: center;
 }
+
+@media (max-width: 768px) {
+  .authForm {
+    width: 90%; /* ✅ Makes form take 90% of screen width */
+    max-width: 320px; /* ✅ Limits max width */
+    padding: 0.8rem; /* ✅ Slightly reduces padding */
+  }
+
+  .authForm>div{
+    align-items: left;
+    justify-content:left;
+}
+.infoInput{
+  width: 73%;
+}
+}
+

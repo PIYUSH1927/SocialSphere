@@ -32,7 +32,8 @@
 .Right-side-chat {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+
+  
 }
 .conversation:hover {
   background: #80808038;

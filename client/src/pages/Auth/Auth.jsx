@@ -59,11 +59,12 @@ const Auth = () => {
     <h1 style={{fontFamily:"cursive",color:"#0096FF", textAlign:"center" }}>SocialSphere</h1>
 
       <div className="a-right">
-        <form className="infoForm authForm" onSubmit={handleSubmit}>
+        <form className="infoForm authForm" onSubmit={handleSubmit} >
           <h2>{isSignUp ? "Register" : "Login"}</h2>
           {isSignUp && (
-            <div>
-              <input
+            <div className="yo">
+              <div>
+              <input 
                 required
                 type="text"
                 placeholder="First Name"
@@ -72,6 +73,10 @@ const Auth = () => {
                 value={data.firstname}
                 onChange={handleChange}
               />
+              </div>
+              
+              <div>
+              
               <input
                 required
                 type="text"
@@ -81,6 +86,7 @@ const Auth = () => {
                 value={data.lastname}
                 onChange={handleChange}
               />
+              </div>
             </div>
           )}
 
