@@ -1,62 +1,28 @@
-.Profile{
-    position: relative;
-    display: grid;
-    grid-template-columns: 18rem auto 20rem;
-    gap: 1rem;
-    
-}
-
-
-.Profile-center{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
 .Profile {
-    display: grid;
-    grid-template-columns: 20rem auto 20rem;
-    gap: 1rem;
-     /* ✅ Ensure full height */
-     /* Prevents entire page from scrolling */
-  }
-  
-  /* ✅ Make ProfileLeft Scroll Separately */
-  .ProfileLeft {
-    max-height: 100vh;
-    overflow-y: auto;
-    padding-right: 10px;
-  }
-  
-  /* ✅ Make ProfileCard + PostSide Scroll Together */
-  .Profile-center {
-  
-    overflow-y: auto;
-    padding-right: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  /* ✅ Make RightSide Scroll Separately */
-  .RightSide {
-    max-height: 100vh;
-    overflow-y: auto;
-    padding-right: 10px;
-  }
-  
-  /* Optional: Custom scrollbar */
-  .ProfileLeft::-webkit-scrollbar,
-  .Profile-center::-webkit-scrollbar,
-  .RightSide::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  .ProfileLeft::-webkit-scrollbar-thumb,
-  .Profile-center::-webkit-scrollbar-thumb,
-  .RightSide::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 10px;
-  }
-  
-  
+  position: relative;
+  display: grid;
+  grid-template-columns: 18rem auto 20rem;
+  gap: 1rem;
+  height: 100vh; /* ✅ Ensures full screen height */
+}
+
+/* ✅ Make ProfileCenter Scrollable */
+.Profile-center {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 100vh; /* ✅ Prevents overflow */
+  overflow-y: auto; /* ✅ Enables scrolling */
+  padding-right: 10px;
+
+}
+
+/* ✅ Optional: Custom Scrollbar */
+.Profile-center::-webkit-scrollbar {
+  width: 6px;
+}
+
+.Profile-center::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}

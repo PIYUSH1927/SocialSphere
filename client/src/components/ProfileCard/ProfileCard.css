@@ -6,6 +6,8 @@
   gap: 1rem;
   overflow-x: clip;
   background-color: var(--cardColor);
+
+  
 }
 
 /* Profile Images */
@@ -18,11 +20,12 @@
 }
 
 .ProfileImages > img:nth-of-type(1) {
-  width: 100%;
+  width: 90%;
   
 }
 .ProfileImages > img:nth-of-type(2) {
-  width: 6rem;
+  width: 7rem;
+  height: 9rem;
   border-radius: 50%;
   position: absolute;
   bottom: -3rem;
@@ -35,7 +38,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: 2.5rem;
-  gap: 5px;
+  gap: 2px;
 }
 
 .ProfileName > span:nth-of-type(1) {

@@ -29,6 +29,7 @@ const FollowersCard = ({ location }) => {
       ) : (
         ""
       )}
+      <br />
     
 
       <FollowersModal
