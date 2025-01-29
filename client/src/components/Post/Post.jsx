@@ -16,14 +16,6 @@ const Post = ({ data }) => {
   const [likes, setLikes] = useState(data.likes.length)
 
   const isUserAuthor = user._id === data.userId;
-
-  console.log("user._id:", user._id);
-  console.log("data.author:", data.author);
-  console.log("data.author:", user.username);
-  console.log("isUserAuthor:", isUserAuthor);
-
-  console.log('Post User ID:', data.userId);
-console.log('Request User ID:', user._id);
   
 
 

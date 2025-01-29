@@ -74,7 +74,7 @@ const Chat = () => {
           <h2>Chats</h2>
           <div className="Chat-list">
             {chats.map((chat) => (
-              <div
+              <div key={chat._id}
                 onClick={() => {
                   setCurrentChat(chat);
                 }}

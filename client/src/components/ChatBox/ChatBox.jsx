@@ -77,7 +77,6 @@ const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage }) => {
 
 // Receive Message from parent component
 useEffect(()=> {
-  console.log("Message Arrived: ", receivedMessage)
   if (receivedMessage !== null && receivedMessage.chatId === chat._id) {
     setMessages([...messages, receivedMessage]);
   }
@@ -128,7 +127,7 @@ useEffect(()=> {
             <div className="chat-body" >
               {messages.map((message) => (
                 <>
-                  <div ref={scroll}
+                  <div ref={scroll} 
                     className={
                       message.senderId === currentUser
                         ? "message own"
