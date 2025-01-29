@@ -1,0 +1,23 @@
+.followers-list {
+    max-height: 53vh; /* ✅ Ensures list fits within modal */
+    overflow-y: auto; /* ✅ Enables scrolling inside list */
+    padding-right: 10px; /* ✅ Prevents scrollbar from overlapping content */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* ✅ Adds space between users */
+  }
+  
+  /* Custom scrollbar (optional) */
+  .followers-list::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .followers-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+  }
+  
+  .followers-list::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
