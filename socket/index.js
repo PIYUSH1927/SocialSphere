@@ -1,14 +1,8 @@
 const io = require("socket.io")(8800, {
   cors: {
-    origin: [
-      "http://localhost:3000",  // ✅ Allow local frontend
-      "https://social-sphere-nu.vercel.app/"  // ✅ Allow deployed frontend
-    ],
-    methods: ["GET", "POST"],
-    transports: ["websocket", "polling"],
+    origin: "http://localhost:3000",
   },
 });
-
 
 let activeUsers = [];
 
