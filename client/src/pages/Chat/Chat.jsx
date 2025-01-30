@@ -109,7 +109,7 @@ const Chat = () => {
 
       {/* Right Side */}
       <div className="Right-side-chat" >
-        <div  className="nav-icons-container">
+        <div  className="nav-icons-container" >
           <NavIcons />
         </div>
         <ChatBox
