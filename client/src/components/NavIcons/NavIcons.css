@@ -4,3 +4,9 @@
         height: 25px;
     }
   }
+
+  .settings-icon {
+    color: black; /* Keep original color */
+    text-decoration: none; /* Remove underline */
+    display: inline-flex; /* Ensure it aligns properly */
+  }

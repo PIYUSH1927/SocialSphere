@@ -7,7 +7,7 @@ import Noti from "../../img/noti.png";
 import Chat from "../../img/chat1.png";
 import User from "../../img/user.png";
 
-import { UilSetting } from "@iconscout/react-unicons";
+import { UilBars } from "@iconscout/react-unicons";
 import "./NavIcons.css";
 
 const NavIcons = () => {
@@ -19,7 +19,9 @@ const NavIcons = () => {
       <Link to="/home">
         <img style={{ width: "36px", height: "31px", position: "relative", bottom: "5px" }} src={Home} alt="Home" />
       </Link>
-      <UilSetting />
+
+            {/* Redirect Settings Icon to /profile route */}
+
       
       {/* Redirect to logged-in user's profile */}
       {user?._id && (
@@ -30,6 +32,10 @@ const NavIcons = () => {
       
       <Link to="/chat">
         <img src={Chat} alt="Chat" />
+      </Link>
+
+      <Link to={`/profiles/${user._id}`}>
+        <UilBars className="settings-icon" />
       </Link>
     </div>
   );

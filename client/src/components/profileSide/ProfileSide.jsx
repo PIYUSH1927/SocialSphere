@@ -11,6 +11,7 @@ const ProfileSide = () => {
       </div>
         
         <ProfileCard location = 'homepage'/>
+        <br />
         <FollowersCard/>
     </div>
     )

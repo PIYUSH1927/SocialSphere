@@ -5,8 +5,8 @@ import LogoSearch from '../LogoSearch/LogoSearch'
 
 const ProfileLeft = () => {
   return (
-    <div className="ProfileSide">
-      <div style={{paddingBottom:"10px", marginLeft:"35px"}}>
+    <div className="ProfileSide" style={{display:"flex"}}>
+      <div>
       <LogoSearch/>
       </div>
         

@@ -1,0 +1,52 @@
+.Profile1 {
+    position: relative;
+    display: grid;
+    grid-template-columns: 20rem auto 25rem;
+    gap: 3rem;
+    height: 100vh; /* ✅ Ensures full screen height */
+}
+
+/* ✅ Desktop View: Keep Original Layout */
+.desktop-visible {
+    display: block;
+}
+
+
+
+/* ✅ Mobile View: Only Show RightSide, InfoCard, FollowersCard */
+@media screen and (max-width: 768px) {
+    .Profile1 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh; /* ✅ Allow height to expand */
+        overflow-y: auto; /* ✅ Enable scrolling */
+    }
+
+    /* Hide everything except RightSide, InfoCard, and FollowersCard in Mobile */
+    .desktop-visible {
+        display: none;
+    }
+
+    /* ✅ Mobile View Order: RightSide → InfoCard → FollowersCard */
+    .mobile-only {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* ✅ Ensure RightSide is First */
+    .mobile-only > .RightSide {
+        order: 1;
+    }
+
+    /* ✅ Ensure InfoCard is Second */
+    .mobile-only > .InfoCard {
+        order: 2;
+    }
+
+    /* ✅ Ensure FollowersCard is Third */
+    .mobile-only > .FollowersCard {
+        order: 3;
+    }
+}

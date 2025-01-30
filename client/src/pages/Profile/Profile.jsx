@@ -8,22 +8,17 @@ import "./Profile.css";
 const Profile = () => {
   return (
     <div className="Profile">
-      {/* ProfileLeft - Now Visible in Mobile */}
       <ProfileLeft />
 
-      {/* Profile Center */}
       <div className="Profile-center">
         <ProfileCard location="profilePage" />
 
-        {/* PostSide - Hidden in Mobile */}
         <div >
           <PostSide />
         </div>
 
         <br />
       </div>
-
-      {/* RightSide - Always Last in Desktop, First in Mobile */}
       <RightSide />
     </div>
   );

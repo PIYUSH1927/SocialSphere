@@ -1,9 +1,9 @@
 
-.FollowersCard{
+.FollowersCard1{
     width: 100%;
     height: auto;
     border-radius: 0.7rem;
-    gap: 0.65rem;
+    gap: 1rem;
     display: flex;
     flex-direction: column;
     font-size: 12px;
@@ -55,7 +55,7 @@
 }
 
 
-.FollowersCard>span{
+.FollowersCard1>span{
     font-weight: bold;
     color: #0096FF;
     align-self: center;
