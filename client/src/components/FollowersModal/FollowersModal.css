@@ -57,7 +57,8 @@
   }
 
   .followers-list {
-      max-height: 75vh; /* ✅ Max height for scrollable list */
+      max-height: 75vh; 
+      width: 80vw;
       overflow-y: auto;
       gap: 10px;
       padding-right: 5px;

@@ -29,14 +29,9 @@ const Post = ({ data }) => {
   const handleDelete = async (postId) => {
     try {
       await deletePost(postId, { userId: user._id });
-      console.log("Post deleted successfully.");
-      window.alert("Post deleted successfully.");
       window.location.reload();
-      // Add any additional logic or state updates after a successful deletion
     } catch (error) {
       console.error("Error deleting post:", error);
-      // Handle errors appropriately
-      // For example, you might want to show an error message to the user
     }
   };
 
