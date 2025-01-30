@@ -69,7 +69,7 @@ const Post = ({ data }) => {
         <img src={Share} alt="" />
 
         {isUserAuthor && (
-        <img style={{marginLeft: "auto", width:"3%" , cursor:"pointer"}} src={Delete} onClick={() => handleDelete(data._id)} alt="" />
+        <img style={{marginLeft: "auto", width:"1.3rem" , cursor:"pointer"}} src={Delete} onClick={() => handleDelete(data._id)} alt="" />
         )}
       </div>
 
