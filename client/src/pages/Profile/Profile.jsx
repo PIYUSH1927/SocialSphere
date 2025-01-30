@@ -15,6 +15,7 @@ const Profile = () => {
 
         <div >
           <PostSide />
+          <br />
         </div>
 
         <br />
