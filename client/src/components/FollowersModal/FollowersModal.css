@@ -58,7 +58,7 @@
 
   .followers-list {
       max-height: 75vh; 
-      width: 80vw;
+      width: 90vw;
       overflow-y: auto;
       gap: 10px;
       padding-right: 5px;
