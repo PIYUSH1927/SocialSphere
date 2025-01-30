@@ -136,13 +136,21 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
           />
         </div>
 
+        <div className="fx">
+
         <div>
-          Profile image
-          <input type="file" name="profileImage" onChange={onImageChange} />
-          Cover image
-          <input type="file" name="coverImage" onChange={onImageChange} />
+        <b style={{fontSize:"0.9rem"}}>Profile image </b>
+        <input type="file" name="profileImage" onChange={onImageChange} />
+        </div>
+        <div>
+        
+        <b style={{fontSize:"0.9rem"}}>Cover image </b>
+        <input  type="file" name="coverImage" onChange={onImageChange} />
         </div>
 
+        </div>
+        
+        
         <button className="button infoButton" type="submit" style={{background:"#0096FF"}}>
           Update
         </button>

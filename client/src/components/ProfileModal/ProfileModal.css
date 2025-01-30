@@ -1,0 +1,61 @@
+/* ✅ Make Modal Fully Responsive for Mobile */
+@media screen and (max-width: 768px) {
+    .mantine-Modal-modal {
+        width: 100vw !important; /* ✅ Full width */
+        height: 100vh !important; /* ✅ Full height */
+        max-width: 100%; /* ✅ Prevents shrinking */
+        max-height: 100%; /* ✅ Ensures full modal height */
+        border-radius: 0 !important; /* ✅ Remove rounded corners */
+        padding: 5px; /* ✅ Better spacing */
+        overflow-y: auto; /* ✅ Enables scrolling */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* ✅ Moves content up */
+        align-items: center; /* ✅ Centers content */
+    }
+
+    .infoForm {
+        width: 90%; /* ✅ Prevents too much left padding */
+        max-width: 400px; /* ✅ Keeps form width reasonable */
+        margin: 0 auto; /* ✅ Centers the form */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .infoForm h3 {
+        font-size: 1.4rem; /* ✅ Proper heading size */
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .infoInput {
+        width: 100%; /* ✅ Full width inputs */
+       
+        font-size: 1rem;
+    }
+
+    /* ✅ File inputs aligned properly */
+    .fx {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .fx input {
+        width: 100%;
+  
+
+    }
+
+    /* ✅ Move update button to the bottom */
+    .infoButton {
+        margin: auto;
+        width: 60%;
+        padding: 12px;
+        font-size: 1rem;
+        position: relative;
+        top: 50px;
+    }
+}

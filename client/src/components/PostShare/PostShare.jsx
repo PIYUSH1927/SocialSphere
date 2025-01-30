@@ -92,11 +92,12 @@ const PostShare = () => {
           </div>
           <div className="option hide-in-mobile" style={{ color: "var(--location)" }}>
             <UilLocationPoint />
-            Location
+            <span style={{position:"relative", bottom:"7px"}}>Location</span>          
           </div>
           <div className="option hide-in-mobile" style={{ color: "var(--shedule)" }}>
             <UilSchedule />
-            Shedule
+            <span style={{position:"relative", bottom:"7px"}}>Shedule</span>  
+            
           </div>
           <button
             className="button ps-button"
