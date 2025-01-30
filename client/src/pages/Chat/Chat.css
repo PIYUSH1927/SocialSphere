@@ -3,8 +3,6 @@
   display: grid;
   grid-template-columns: 22% auto;
   gap: 1rem;
-  overflow-y: hidden;
-  
 }
 html, body {
   height: 100%;
@@ -27,8 +25,8 @@ html, body {
   border-radius: 1rem;
   padding: 1rem;
   height: auto;
-  min-height: 81.5vh;
-  overflow: hidden;
+  min-height: 82vh;
+  overflow: scroll;
 }
 
 /* ✅ Fix Chat List and Messages Overflow */
@@ -173,4 +171,3 @@ html, body {
     right: 12px;
   }
 }
-
