@@ -4,6 +4,10 @@
   grid-template-columns: 22% auto;
   gap: 1rem;
 }
+html, body {
+  height: 100%;
+  overflow: hidden; /* Prevents shifting when keyboard opens */
+}
 
 .Left-side-chat {
   display: flex;
@@ -21,6 +25,12 @@
   height: auto;
   min-height: 82.5vh;
   overflow: scroll;
+}
+
+/* ✅ Fix Chat List and Messages Overflow */
+.Chat-container {
+  overflow-y: auto; /* Prevents content from being hidden */
+  max-height: calc(100vh - 150px); /* Keeps space for NavIcons */
 }
 
 .Chat-list {
