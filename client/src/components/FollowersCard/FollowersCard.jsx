@@ -28,11 +28,12 @@ const FollowersCard = ({ location }) => {
           <User person={person} key={id} />
         ))}
       {!location ? (
-        <span style={{position:"relative", bottom:"5px", }} onClick={() => setModalOpened(true)}>Show more</span>
+        <span style={{position:"relative", bottom:"5px", marginBottom:"25px"}} onClick={() => setModalOpened(true)}>Show more</span>
       ) : (
         ""
       )}
-
+    
+     
     
 
       <FollowersModal

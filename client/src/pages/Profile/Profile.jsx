@@ -19,7 +19,9 @@ const Profile = () => {
 
         <br />
       </div>
+      <div >
       <RightSide />
+      </div>
     </div>
   );
 };

@@ -36,6 +36,9 @@
   .Profile {
     display: flex;
     flex-direction: column;
+    position: relative;
+    bottom: 20px;
+
   }
 
   /* Hide PostSide in Mobile */
@@ -55,10 +58,12 @@
   .RightSide {
     order: 1;
     width: 100%;
+
   }
 
   .Profile-center {
     order: 3;
     width: 100%;
   }
+
 }

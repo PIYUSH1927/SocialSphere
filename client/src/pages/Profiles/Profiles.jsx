@@ -34,6 +34,7 @@ const Profiles = () => {
         </div>
         <InfoCard />
         <FollowersCard />
+       
       </div>
     </div>
   );

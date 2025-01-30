@@ -9,7 +9,10 @@
   display: flex;
   flex-direction: column;
 }
-
+.followers-modal .mantine-Modal-close {
+  top: 30px !important; /* Moves button down */
+  right: 20px !important; /* Keeps it aligned to the right */
+}
 /* ✅ Scrollable List */
 .followers-list {
   max-height: 58vh;
