@@ -79,10 +79,19 @@ html, body {
 @media screen and (max-width: 768px) {
  .Chat {
     grid-template-columns: 16% auto;
+    gap:0.3rem;
   }
    .follower.conversation>div>.name{
     display: none;
    }
+
+   .Chat-container {
+    min-height: 76vh;
+  }
+
+  .rsbox{
+    min-height: 76vh;
+  }
 }
 
 /* ✅ Hide LogoSearch in Mobile */
@@ -166,9 +175,10 @@ html, body {
     right: 18px;
   }
   .yep{
-    font-size: medium;
+    font-size: 15px;
     position: relative;
-    right: 12px;
+    right: 10px;
+    text-align: center;
   }
 }
 

@@ -113,7 +113,7 @@ const Chat = () => {
           <NavIcons />
         </div>
 
-        <div style={{height:"50%"}}>
+        <div className="rsbox" >
         <ChatBox
           chat={currentChat}
           currentUser={user._id}

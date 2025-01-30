@@ -88,6 +88,10 @@
         font-size: medium;
         text-align: center;
     }
+
+    .ChatBox-container {
+      grid-template-rows: 14vh 54vh 13vh;
+  }
   }
   
   @media screen and (max-width: 768px) {

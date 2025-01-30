@@ -158,7 +158,7 @@ useEffect(()=> {
             </div>{" "}
           </>
         ) : (
-          <span className="chatbox-empty-message">
+          <span className="chatbox-empty-message"  style={{fontSize:"20px", paddingTop:"100px"}}>
             Tap on a chat to start conversation...
           </span>
         )}

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getAllUser } from "../../api/UserRequests";
 import axios from "axios";
 import "./Post.css";
 import Comment from "../../img/comment.png";
@@ -13,12 +14,24 @@ import { useSelector } from "react-redux";
 const Post = ({ data }) => {
   const { user } = useSelector((state) => state.authReducer.authData);
   const [liked, setLiked] = useState(data.likes.includes(user._id));
-  const [likes, setLikes] = useState(data.likes.length)
+  const [likes, setLikes] = useState(data.likes.length);
+  const [persons, setPersons] = useState([]);
 
   const isUserAuthor = user._id === data.userId;
   
+  useEffect(() => {
+    const fetchPersons = async () => {
+      try {
+        const { data } = await getAllUser();
+        setPersons(data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+    fetchPersons();
+  }, []);
 
-
+  const postUser = persons.find((person) => person._id === data.userId);
   
   const handleLike = () => {
     likePost(data._id, user._id);
@@ -44,7 +57,7 @@ const Post = ({ data }) => {
         <img  src={User} alt="" />
         &nbsp;&nbsp;
         <span style={{position:"relative",bottom:"4px"}}>
-        {isUserAuthor ? user.username : user.username === "ppadia" ? "hmodi" : "ppadia"}
+        {postUser ? postUser.username : ""}
         </span>
         </span>
       </div>
