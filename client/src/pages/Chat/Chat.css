@@ -3,6 +3,8 @@
   display: grid;
   grid-template-columns: 22% auto;
   gap: 1rem;
+  overflow-y: hidden;
+  
 }
 html, body {
   height: 100%;
@@ -15,6 +17,8 @@ html, body {
   gap: 1rem;
 }
 
+
+
 .Chat-container {
   display: flex;
   flex-direction: column;
@@ -23,15 +27,12 @@ html, body {
   border-radius: 1rem;
   padding: 1rem;
   height: auto;
-  min-height: 82.5vh;
-  overflow: scroll;
+  min-height: 81.5vh;
+  overflow: hidden;
 }
 
 /* ✅ Fix Chat List and Messages Overflow */
-.Chat-container {
-  overflow-y: auto; /* Prevents content from being hidden */
-  max-height: calc(100vh - 150px); /* Keeps space for NavIcons */
-}
+
 
 .Chat-list {
   display: flex;
@@ -172,3 +173,4 @@ html, body {
     right: 12px;
   }
 }
+

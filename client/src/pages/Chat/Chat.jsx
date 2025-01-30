@@ -108,7 +108,7 @@ const Chat = () => {
       </div>
 
       {/* Right Side */}
-      <div className="Right-side-chat">
+      <div className="Right-side-chat" >
         <div  className="nav-icons-container">
           <NavIcons />
         </div>
