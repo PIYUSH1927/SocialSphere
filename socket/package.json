@@ -4,6 +4,7 @@
     "build": "npm i"
   },
   "dependencies": {
+    "express": "^4.21.2",
     "nodemon": "^2.0.22",
     "socket.io": "^4.7.5"
   }
