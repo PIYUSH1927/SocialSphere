@@ -112,12 +112,15 @@ const Chat = () => {
         <div  className="nav-icons-container" >
           <NavIcons />
         </div>
+
+        <div style={{height:"50%"}}>
         <ChatBox
           chat={currentChat}
           currentUser={user._id}
           setSendMessage={setSendMessage}
           receivedMessage={receivedMessage}
         />
+        </div>
       </div>
     </div>
   );

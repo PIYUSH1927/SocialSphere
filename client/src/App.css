@@ -93,8 +93,3 @@
 }
 
 
-@media screen and (max-width: 768px) {
-  .App{
-    overflow-y: hidden;
-  }
-}
