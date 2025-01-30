@@ -68,7 +68,7 @@ const Auth = () => {
                 required
                 type="text"
                 placeholder="First Name"
-                className="infoInput"
+                className="infoInput1"
                 name="firstname"
                 value={data.firstname}
                 onChange={handleChange}
@@ -81,7 +81,7 @@ const Auth = () => {
                 required
                 type="text"
                 placeholder="Last Name"
-                className="infoInput"
+                className="infoInput1"
                 name="lastname"
                 value={data.lastname}
                 onChange={handleChange}
@@ -95,7 +95,7 @@ const Auth = () => {
               required
               type="text"
               placeholder="Username"
-              className="infoInput"
+              className="infoInput1"
               name="username"
               value={data.username}
               onChange={handleChange}
@@ -105,7 +105,7 @@ const Auth = () => {
             <input
               required
               type="password"
-              className="infoInput"
+              className="infoInput1"
               placeholder="Password"
               name="password"
               value={data.password}
@@ -115,7 +115,7 @@ const Auth = () => {
               <input
                 required
                 type="password"
-                className="infoInput"
+                className="infoInput1"
                 name="confirmpass"
                 placeholder="Confirm Password"
                 onChange={handleChange}
@@ -152,7 +152,7 @@ const Auth = () => {
             </span>
             <button
             style={{background:'#0096FF'}}
-              className="button  infoButton"
+              className="button  infoButton1"
               type="Submit"
             >
               {loading ? "Loading..." : isSignUp ? "SignUp" : "Login"}
