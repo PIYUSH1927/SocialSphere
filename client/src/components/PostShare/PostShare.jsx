@@ -43,7 +43,7 @@ const PostShare = () => {
       data.append("name", fileName);
       data.append("file", image);
       newPost.image = fileName;
-      console.log(newPost);
+      
       try {
         dispatch(uploadImage(data));
       } catch (err) {
@@ -90,11 +90,11 @@ const PostShare = () => {
             <UilPlayCircle />
             Video
           </div>
-          <div className="option" style={{ color: "var(--location)" }}>
+          <div className="option hide-in-mobile" style={{ color: "var(--location)" }}>
             <UilLocationPoint />
             Location
           </div>
-          <div className="option" style={{ color: "var(--shedule)" }}>
+          <div className="option hide-in-mobile" style={{ color: "var(--shedule)" }}>
             <UilSchedule />
             Shedule
           </div>

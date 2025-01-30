@@ -11,6 +11,7 @@ const PostSide = () => {
       <div className="mobile-only">
         <br />
         <br />
+        <br />
       </div>
     </div>
   );

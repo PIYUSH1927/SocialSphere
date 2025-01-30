@@ -18,8 +18,8 @@ const RightSide = () => {
       {/* Hide TrendCard and Share Button in Mobile View */}
       <div className="hide-in-mobile">
         <TrendCard />
-       
-        <button className="button r-button" style={{ background: "#0096FF", marginLeft:"33px", marginTop:"15px" }} onClick={() => setModalOpened(true)}>
+        <br />
+        <button className="button r-button" style={{ background: "#0096FF", marginLeft:"33px" }} onClick={() => setModalOpened(true)}>
           Share
         </button>
         <ShareModal modalOpened={modalOpened} setModalOpened={setModalOpened} />

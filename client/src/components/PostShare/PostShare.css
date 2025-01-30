@@ -78,3 +78,22 @@
     border-radius: 0.5rem;
 }
 
+.hide-in-mobile {
+    display: block;
+  }
+  
+  /* Hide Location and Schedule icons in Mobile */
+  @media screen and (max-width: 768px) {
+    .hide-in-mobile {
+      display: none;
+    }
+  }
+  
+
+@media screen and (max-width: 768px) {
+    .PostShare>img{
+        border-radius: 50%;
+        width: 3.5rem;
+        height: 3rem;
+    }
+  }
