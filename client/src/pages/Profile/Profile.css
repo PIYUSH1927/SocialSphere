@@ -14,7 +14,11 @@
   min-height: 100vh; /* ✅ Prevents overflow */
   overflow-y: auto; /* ✅ Enables scrolling */
   padding-right: 10px;
+}
 
+/* ✅ Hide PostSide in Mobile */
+.hide-in-mobile {
+  display: block;
 }
 
 /* ✅ Optional: Custom Scrollbar */
@@ -25,4 +29,36 @@
 .Profile-center::-webkit-scrollbar-thumb {
   background: #ccc;
   border-radius: 10px;
+}
+
+/* ✅ Mobile View: Fix ProfileLeft Visibility & Change Order */
+@media screen and (max-width: 768px) {
+  .Profile {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Hide PostSide in Mobile */
+  .hide-in-mobile {
+    display: none;
+  }
+
+  /* ✅ Force ProfileLeft to be visible in mobile */
+  .ProfileLeft {
+    order: 2;
+    width: 100%;
+    display: flex !important; /* 🔥 Forces visibility */
+    flex-direction: column;
+  }
+
+  /* ✅ Order Change: RightSide First, ProfileLeft Second, ProfileCard Last */
+  .RightSide {
+    order: 1;
+    width: 100%;
+  }
+
+  .Profile-center {
+    order: 3;
+    width: 100%;
+  }
 }

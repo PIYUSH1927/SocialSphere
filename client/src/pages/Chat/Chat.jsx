@@ -82,11 +82,13 @@ const Chat = () => {
   return (
     <div className="Chat">
       {/* Left Side */}
-      <div className="Left-side-chat">
-        <LogoSearch />
-        <div className="Chat-container">
-          <h2>Chats</h2>
-          <div className="Chat-list">
+      <div className="Left-side-chat" >
+      <div className="hide-in-mobile">
+          <LogoSearch />
+        </div>
+        <div className="Chat-container" style={{overflowX:"hidden"}}>
+          <h3 className="yep">Chats</h3>
+          <div className="Chat-list" >
             {chats.map((chat) => (
               <div
                 key={chat._id}
@@ -107,7 +109,7 @@ const Chat = () => {
 
       {/* Right Side */}
       <div className="Right-side-chat">
-        <div style={{ width: "20rem", alignSelf: "flex-end" }}>
+        <div  className="nav-icons-container">
           <NavIcons />
         </div>
         <ChatBox

@@ -19,7 +19,7 @@
   border-radius: 1rem;
   padding: 1rem;
   height: auto;
-  min-height: 80vh;
+  min-height: 82.5vh;
   overflow: scroll;
 }
 
@@ -32,7 +32,7 @@
 .Right-side-chat {
   display: flex;
   flex-direction: column;
-
+  margin-top: 5px;
   
 }
 .conversation:hover {
@@ -74,4 +74,91 @@
    .follower.conversation>div>.name{
     display: none;
    }
+}
+
+/* ✅ Hide LogoSearch in Mobile */
+.hide-in-mobile {
+  display: block;
+}
+
+/* ✅ Mobile View */
+@media screen and (max-width: 768px) {
+  .hide-in-mobile {
+    display: none;
+  }
+
+}
+
+.nav-icons-container {
+  width: 16.5rem;
+  align-self: flex-end;
+  margin-right: 20px;
+}
+
+/* ✅ Apply margin-bottom in Mobile View */
+@media screen and (max-width: 768px) {
+  .nav-icons-container {
+    margin-bottom: 15px;
+  }
+
+  .Left-side-chat{
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* Adjust Chat Layout */
+  .Chat {
+    grid-template-columns: 16% auto;
+  }
+
+  /* Hide LogoSearch in Mobile */
+  .hide-in-mobile {
+    display: none;
+  }
+
+  /* Reduce Heading Size in Mobile */
+  .Chat-container h2 {
+    font-size: 1.2rem; /* ✅ Smaller Heading for Mobile */
+    text-align: left;
+  }
+
+  /* Adjust Chat List */
+  .Chat-list {
+    gap: 1rem; /* ✅ Reduce spacing */
+  }
+
+  /* Adjust Conversation Items */
+  .conversation {
+    padding: 8px; /* ✅ Reduce padding */
+    display: flex;
+    align-items: center;
+  }
+
+  /* Reduce Image Size and Align Left */
+  .conversation img {
+    width: 35px !important; /* ✅ Make images smaller */
+    height: 35px !important; /* ✅ Make images smaller */
+    margin-left: 5px; /* ✅ Move towards left */
+  }
+
+  /* Hide Names in Mobile for Compact View */
+  .follower.conversation > div > .name {
+    display: none;
+  }
+
+  /* Ensure Left Side Chat Has Proper Spacing */
+  .Left-side-chat {
+    margin-top: 45px;
+  }
+
+  .Chat-list{
+    position: relative;
+    right: 18px;
+  }
+  .yep{
+    font-size: medium;
+    position: relative;
+    right: 12px;
+  }
 }

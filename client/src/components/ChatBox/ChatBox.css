@@ -81,3 +81,63 @@
     height: 70%;
     padding: 0px 15px 0px 15px;
 }
+
+@media screen and (max-width: 768px) {
+
+    .chatbox-empty-message{
+        font-size: medium;
+        text-align: center;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    /* ✅ Make Chat Sender More Compact */
+    .chat-sender {
+      height: 3rem; /* Keep compact height */
+      padding: 0.3rem; /* Reduce padding further */
+      gap: 0.1rem; /* ✅ Almost zero gap between elements */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    /* ✅ Maximize width of input box */
+    .chat-sender > input {
+      flex: 5; /* ✅ Increase flex to take maximum space */
+      font-size: 14px;
+      padding: 10px 15px;
+      width: 100%;
+    }
+  
+    /* ✅ Reduce size of emoji, attach, and send button */
+    .chat-sender > div {
+      height: 55%; /* ✅ Reduce height further */
+      padding: 4px 6px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    /* ✅ Reduce size of attach (+) button */
+    .chat-sender > div:nth-of-type(1) {
+      font-size: 14px;
+      padding: 3px;
+      width: 24px;
+      height: 24px;
+    }
+  
+    /* ✅ Reduce size of emoji icon */
+    .chat-sender .InputEmoji {
+      font-size: 12px;
+      width: 22px;
+      height: 22px;
+    }
+  
+    /* ✅ Reduce size of send button */
+    .send-button {
+      font-size: 12px;
+      padding: 5px 8px;
+    }
+  }
+  
