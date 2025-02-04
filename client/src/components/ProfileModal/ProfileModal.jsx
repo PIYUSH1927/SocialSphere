@@ -29,37 +29,45 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
     }
   };
 
-  // form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    let UserData = formData;
+    let UserData = { ...formData }; 
+  
+    const uploadToS3 = async (file) => {
+      const data = new FormData();
+      data.append("file", file);
+  
+      try {
+        const response = await dispatch(uploadImage(data)); 
+  
+        if (response && response.imageUrl) {
+          return response.imageUrl; 
+        }
+      } catch (err) {
+        console.error("🚨 Error uploading to S3:", err);
+      }
+      return null;
+    };
+  
     if (profileImage) {
-      const data = new FormData();
-      const fileName = Date.now() + profileImage.name;
-      data.append("name", fileName);
-      data.append("file", profileImage);
-      UserData.profilePicture = fileName;
-      try {
-        dispatch(uploadImage(data));
-      } catch (err) {
-        console.log(err);
+      const profileImageUrl = await uploadToS3(profileImage);
+      if (profileImageUrl) {
+        UserData.profilePicture = profileImageUrl; 
       }
     }
+  
     if (coverImage) {
-      const data = new FormData();
-      const fileName = Date.now() + coverImage.name;
-      data.append("name", fileName);
-      data.append("file", coverImage);
-      UserData.coverPicture = fileName;
-      try {
-        dispatch(uploadImage(data));
-      } catch (err) {
-        console.log(err);
+      const coverImageUrl = await uploadToS3(coverImage);
+      if (coverImageUrl) {
+        UserData.coverPicture = coverImageUrl;
       }
     }
-    dispatch(updateUser(param.id, UserData));
+ 
+    const response = await dispatch(updateUser(param.id, UserData));
+  
     setModalOpened(false);
   };
+  
 
   return (
     <Modal

@@ -115,12 +115,15 @@ export const likePost = async (req, res) => {
 
 // Get timeline posts
 export const getTimelinePosts = async (req, res) => {
-  const userId = req.params.id
+  const userId = req.params.id;
   try {
-    const currentUserPosts = await PostModel.find({ userId: userId });
+    // Get current user's posts sorted by `createdAt` (oldest first)
+    const currentUserPosts = await PostModel.find({ userId: userId })
+      .sort({ createdAt: 1 }); // ✅ Sort in ascending order (oldest first)
 
+    // Get posts from users the current user is following
     const followingPosts = await UserModel.aggregate([
-      { 
+      {
         $match: {
           _id: new mongoose.Types.ObjectId(userId),
         },
@@ -139,15 +142,25 @@ export const getTimelinePosts = async (req, res) => {
           _id: 0,
         },
       },
+      {
+        $unwind: "$followingPosts", // ✅ Ensure posts are structured properly
+      },
+      {
+        $sort: { "followingPosts.createdAt": 1 }, // ✅ Sort in ascending order (oldest first)
+      },
+      {
+        $group: {
+          _id: null,
+          followingPosts: { $push: "$followingPosts" },
+        },
+      },
     ]);
 
-    res.status(200).json(
-      currentUserPosts
-        .concat(...followingPosts[0].followingPosts)
-        .sort((a, b) => {
-          return new Date(b.createdAt) - new Date(a.createdAt);
-        })
-    );
+    // Merge and return sorted posts
+    const allPosts = currentUserPosts.concat(followingPosts[0]?.followingPosts || []);
+    
+    res.status(200).json(allPosts);
+
   } catch (error) {
     res.status(500).json(error);
   }

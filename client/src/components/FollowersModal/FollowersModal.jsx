@@ -36,7 +36,7 @@ const FollowersModal = ({ modalOpened, setModalOpened }) => {
     >
       <h2 className="modal-title" style={{textAlign:"center"}}>People You May Know</h2>
 
-      {/* Scrollable Content */}
+  
       <div className="followers-list">
         {modalPersons.map((person, index) => (
           <div key={index} className="user-item">

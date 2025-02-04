@@ -7,14 +7,22 @@ import { UilSchedule } from "@iconscout/react-unicons";
 import { UilTimes } from "@iconscout/react-unicons";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadImage, uploadPost } from "../../actions/UploadAction";
+import axios from "axios";
+import DefaultProfile from "../../img/profileImg.jpg";
 
 const PostShare = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer.authData);
-  const loading = useSelector((state) => state.postReducer.uploading);
+  const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
   const desc = useRef();
-  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+ 
+  const imageRef = useRef();
+  
+  const profileImageUrl = user.profilePicture
+  ? user.profilePicture 
+  : DefaultProfile;
+
 
   // handle Image Change
   const onImageChange = (event) => {
@@ -24,37 +32,41 @@ const PostShare = () => {
     }
   };
 
-  const imageRef = useRef();
 
-  // handle post upload
   const handleUpload = async (e) => {
     e.preventDefault();
 
-    //post data
-    const newPost = {
-      userId: user._id,
-      desc: desc.current.value,
-    };
+    setLoading(true);
+   
+    const formData = new FormData();
+    formData.append("userId", user._id);
+    formData.append("desc", desc.current.value);
 
-    // if there is an image with post
     if (image) {
-      const data = new FormData();
-      const fileName = Date.now() + image.name;
-      data.append("name", fileName);
-      data.append("file", image);
-      newPost.image = fileName;
-      
-      try {
-        dispatch(uploadImage(data));
-      } catch (err) {
-        console.log(err);
-      }
+      formData.append("image", image); 
     }
-    dispatch(uploadPost(newPost));
-    resetShare();
+
+    console.log("Sending FormData:", [...formData.entries()]); 
+
+    try {
+      const response = await axios.post("https://socialsphere1-4z6x.onrender.com/posts", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log("Upload Response:", response.data);
+      window.location.reload();
+      dispatch(uploadPost(response.data));
+
+    } catch (err) {
+      console.error("Upload Error:", err);
+    } finally {
+      setLoading(false); 
+      resetShare();
+    }
   };
 
-  // Reset Post Share
   const resetShare = () => {
     setImage(null);
     desc.current.value = "";
@@ -62,11 +74,7 @@ const PostShare = () => {
   return (
     <div className="PostShare">
       <img
-        src={
-          user.profilePicture
-            ? serverPublic + user.profilePicture
-            : serverPublic + "defaultProfile.png"
-        }
+       src={profileImageUrl}
         alt="Profile"
       />
       <div>

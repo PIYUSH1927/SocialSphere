@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRef } from "react";
 import { addMessage, getMessages } from "../../api/MessageRequests";
 import { getUser } from "../../api/UserRequests";
+import DefaultProfile from "../../img/profileImg.jpg";
 import "./ChatBox.css";
 import { format } from "timeago.js";
 import InputEmoji from 'react-input-emoji'
@@ -87,6 +88,11 @@ useEffect(()=> {
 
   const scroll = useRef();
   const imageRef = useRef();
+
+  const profileImageUrl = userData?.profilePicture
+  ? userData.profilePicture // ✅ Direct S3 URL from database
+  : DefaultProfile;
+
   return (
     <>
       <div className="ChatBox-container">
@@ -97,13 +103,7 @@ useEffect(()=> {
               <div className="follower">
                 <div>
                   <img
-                    src={
-                      userData?.profilePicture
-                        ? process.env.REACT_APP_PUBLIC_FOLDER +
-                          userData.profilePicture
-                        : process.env.REACT_APP_PUBLIC_FOLDER +
-                          "defaultProfile.png"
-                    }
+                    src={profileImageUrl}
                     alt="Profile"
                     className="followerImage"
                     style={{ width: "50px", height: "50px" }}

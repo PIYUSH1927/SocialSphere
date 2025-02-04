@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { followUser, unfollowUser } from "../../actions/UserAction";
 const User = ({ person }) => {
-  const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user } = useSelector((state) => state.authReducer.authData);
   const dispatch = useDispatch()
   
@@ -16,11 +15,17 @@ const User = ({ person }) => {
     setFollowing((prev) => !prev);
   };
   const randomImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1VyCFr3rHLultu7DYy5oRiJlAO-eTOSdXLRhBIfhlGQ&s";
+
+  const profileImageUrl = person.profilePicture
+  ? person.profilePicture 
+  : randomImageUrl;
+
+
   return (
     <div className="follower">
       <div>
         <img
-          src={person.profilePicture ? (publicFolder + person.profilePicture) : randomImageUrl}
+         src={profileImageUrl}
          
           className="followerImage"
         />

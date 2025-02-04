@@ -61,10 +61,7 @@ const Post = ({ data }) => {
         </span>
         </span>
       </div>
-      <img
-        src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""}
-        alt=""
-      />
+      <img src={data.image ? data.image : User} alt="Post" />
 
       <div className="postReact">
         <img
