@@ -7,6 +7,8 @@ import "./FollowersModal.css"; // Import modal-specific styles
 const FollowersModal = ({ modalOpened, setModalOpened }) => {
   const [modalPersons, setModalPersons] = useState([]);
 
+  
+
   useEffect(() => {
     const fetchPersons = async () => {
       try {
