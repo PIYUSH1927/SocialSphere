@@ -16,7 +16,9 @@ const Posts = () => {
   if(!posts) return 'No Posts';
   if(params.id) posts = posts.filter((post)=> post.userId===params.id)
 
-    posts = [...posts].reverse();
+  posts = [...posts].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+
+  posts = [...posts].reverse();
 
   return (
     <div className="Posts">

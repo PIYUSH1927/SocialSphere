@@ -117,11 +117,10 @@ export const likePost = async (req, res) => {
 export const getTimelinePosts = async (req, res) => {
   const userId = req.params.id;
   try {
-    // Get current user's posts sorted by `createdAt` (oldest first)
+    
     const currentUserPosts = await PostModel.find({ userId: userId })
-      .sort({ createdAt: 1 }); // ✅ Sort in ascending order (oldest first)
+      .sort({ createdAt: 1 }); 
 
-    // Get posts from users the current user is following
     const followingPosts = await UserModel.aggregate([
       {
         $match: {
@@ -143,10 +142,10 @@ export const getTimelinePosts = async (req, res) => {
         },
       },
       {
-        $unwind: "$followingPosts", // ✅ Ensure posts are structured properly
+        $unwind: "$followingPosts", 
       },
       {
-        $sort: { "followingPosts.createdAt": 1 }, // ✅ Sort in ascending order (oldest first)
+        $sort: { "followingPosts.createdAt": 1 }, 
       },
       {
         $group: {
@@ -156,7 +155,6 @@ export const getTimelinePosts = async (req, res) => {
       },
     ]);
 
-    // Merge and return sorted posts
     const allPosts = currentUserPosts.concat(followingPosts[0]?.followingPosts || []);
     
     res.status(200).json(allPosts);
