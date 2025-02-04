@@ -3,6 +3,10 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import multer from "multer";
+
+
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3"
 
 
 // routes
@@ -28,7 +32,21 @@ app.use('/images', express.static('images'));
 dotenv.config();
 const PORT = process.env.PORT;
 
+const bucketName = process.env.BUCKET_NAME;
+const bucketRegion = process.env.BUCKET_REGION;
+const accessKey = process.env.ACCESS_KEY;
+const secretAccessKey = process.env.SECRET_ACCESS_KEY;
+
 const CONNECTION =process.env.MONGODB_CONNECTION;
+
+export const s3 = new S3Client({
+  credentials: {
+    accessKeyId: accessKey,
+    secretAccessKey: secretAccessKey,
+  },
+  region: bucketRegion
+})
+
 mongoose
   .connect(CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => app.listen(PORT, () => console.log(`Listening at Port ${PORT}`)))

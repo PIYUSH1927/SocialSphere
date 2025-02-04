@@ -2,16 +2,47 @@ import PostModel from "../models/postModel.js";
 import UserModel from "../models/userModel.js";
 import mongoose from "mongoose";
 
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { s3 } from "../index.js";
+import dotenv from "dotenv";
+
 // creating a post
 
 export const createPost = async (req, res) => {
-  const newPost = new PostModel(req.body);
-
   try {
+
+    const { userId, desc } = req.body;
+    let imageUrl = null;
+
+    if (req.file) {
+      const file = req.file;
+      const fileName = `${Date.now()}-${file.originalname}`;
+
+      const uploadParams = {
+        Bucket: process.env.BUCKET_NAME,
+        Key: fileName,
+        Body: file.buffer,
+        ContentType: file.mimetype,
+      };
+
+
+      await s3.send(new PutObjectCommand(uploadParams));
+
+ 
+      imageUrl = `https://${process.env.BUCKET_NAME}.s3.${process.env.BUCKET_REGION}.amazonaws.com/${fileName}`;
+    }
+
+    const newPost = new PostModel({
+      userId,
+      desc,
+      image: imageUrl, 
+    });
+
     await newPost.save();
     res.status(200).json(newPost);
   } catch (error) {
-    res.status(500).json(error);
+    console.error("Error uploading image to S3:", error);
+    res.status(500).json({ message: "Failed to create post", error });
   }
 };
 
@@ -22,9 +53,15 @@ export const getPost = async (req, res) => {
 
   try {
     const post = await PostModel.findById(id);
+
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
     res.status(200).json(post);
   } catch (error) {
-    res.status(500).json(error);
+    console.error("Error fetching post:", error);
+    res.status(500).json({ message: "Failed to fetch post", error });
   }
 };
 

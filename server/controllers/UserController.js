@@ -41,12 +41,11 @@ export const getAllUsers = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   const id = req.params.id;
-  // console.log("Data Received", req.body)
+
   const { _id, currentUserAdmin, password } = req.body;
   
   if (id === _id) {
     try {
-      // if we also have to update password then password will be bcrypted again
       if (password) {
         const salt = await bcrypt.genSalt(10);
         req.body.password = await bcrypt.hash(password, salt);
@@ -63,7 +62,7 @@ export const updateUser = async (req, res) => {
       console.log({user, token})
       res.status(200).json({user, token});
     } catch (error) {
-      console.log("Error agya hy")
+      console.log("Error")
       res.status(500).json(error);
     }
   } else {
