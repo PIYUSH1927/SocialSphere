@@ -1,26 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "@mantine/core";
-import User from "../User/User"; // Import User component
-import { getAllUser } from "../../api/UserRequests"; // Fetch users separately
-import "./FollowersModal.css"; // Import modal-specific styles
+import User from "../User/User";
+import { getAllUser } from "../../api/UserRequests"; 
+import { useSelector } from "react-redux"; 
+import "./FollowersModal.css"; 
 
 const FollowersModal = ({ modalOpened, setModalOpened }) => {
   const [modalPersons, setModalPersons] = useState([]);
 
-  
+    const { user } = useSelector((state) => state.authReducer.authData);
 
   useEffect(() => {
     const fetchPersons = async () => {
       try {
         const { data } = await getAllUser();
-        setModalPersons(data);
+
+        const filteredUsers = data.filter((person) => person._id !== user._id);
+
+        setModalPersons(filteredUsers);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
     };
 
     if (modalOpened) {
-      fetchPersons(); // Fetch new data when modal opens
+      fetchPersons(); 
     }
   }, [modalOpened]);
 

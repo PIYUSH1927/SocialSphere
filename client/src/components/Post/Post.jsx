@@ -32,6 +32,7 @@ const Post = ({ data }) => {
   }, []);
 
   const postUser = persons.find((person) => person._id === data.userId);
+
   
   const handleLike = () => {
     likePost(data._id, user._id);
